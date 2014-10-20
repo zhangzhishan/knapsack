@@ -1,1 +1,6 @@
-#  bei bao wen ti de ji zhong jie fa
+#  背包问题的几种解法
+*贪婪算法
+*动态规划算法
+、
+##TODO
+*Rollout算法
