@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # coding=utf-8
+import time
+import json
+
 
 def knapsack(num, cap, wei = [], val = []):
     d = [[i for i in range(cap + 1)]for j in range(num + 1)]
@@ -11,7 +14,8 @@ def knapsack(num, cap, wei = [], val = []):
         try:
             d[0][i] = 0
         except:
-            print i
+            pass
+#            print i
     for i in range(1, num + 1):
         for j in range(1, cap + 1):
             d[i][j] = d[i - 1][j]
@@ -21,7 +25,17 @@ def knapsack(num, cap, wei = [], val = []):
                     d[i][j] = temp
     return d[num][cap]
 
+start = time.clock()
+num = 100
+cap = 10000
+f = open('weight.txt', 'r')
+weight = json.load(f)
+f.close()
+f = open('value.txt', 'r')
+value = json.load(f)
+f.close()
 
-print knapsack(5, 20, [3, 4, 5, 7, 12], [3, 6, 8, 12, 11])
-
+print knapsack(num, cap, weight, value)
+timeused = time.clock() - start
+print '用时：', timeused
 
