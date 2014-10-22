@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # coding=utf-8
+import time
+import json
 
 def greedydp(num, cap, weight = [], value = []):
     p = [0] * num
@@ -27,5 +29,18 @@ def greedydp(num, cap, weight = [], value = []):
                     sumwei += weight[j]
     return sum
 
-print greedydp(5, 20, [3, 4, 5, 7, 12], [3, 6, 8, 12, 11])
+start = time.clock()
+num = 100
+cap = 10000
+f = open('weight.txt', 'r')
+weight = json.load(f)
+f.close()
+f = open('value.txt', 'r')
+value = json.load(f)
+f.close()
+
+print greedydp(num, cap, weight, value)
+timeused = time.clock() - start
+print '用时：', timeused
+
 
