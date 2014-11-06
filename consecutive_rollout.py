@@ -28,15 +28,18 @@ def consecutive_rollout(cap, weight=[], value=[], I=[]):
 def calcu_time():
     start = time.time()
     #print start
-    num = 100
-    cap = 10
+    #num = 100
+    #cap = 10
     f = open('weight.txt', 'r')
     weight = json.load(f)
     f.close()
     f = open('value.txt', 'r')
     value = json.load(f)
     f.close()
-    I = [i for i in range(num)]
+    f = open('cap.txt', 'r')
+    cap = json.load(f)
+    f.close()
+    I = [i for i in range(len(weight))]
     S, U = consecutive_rollout(cap, weight, value, I)
     #print time.time()
     print S, U
