@@ -29,7 +29,7 @@ def calcu_time():
     start = time.time()
     #print start
     num = 100
-    cap = 10000
+    cap = 10
     f = open('weight.txt', 'r')
     weight = json.load(f)
     f.close()
@@ -37,8 +37,13 @@ def calcu_time():
     value = json.load(f)
     f.close()
     I = [i for i in range(num)]
-    print consecutive_rollout(cap, weight, value, I)
+    S, U = consecutive_rollout(cap, weight, value, I)
     #print time.time()
+    print S, U
+    sum = 0
+    for i in S:
+        sum += weight[i]
+    print sum
     timeused = time.time() - start
     print 'time cost', timeused
 
