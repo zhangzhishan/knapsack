@@ -3,7 +3,7 @@
 
 import time
 import json
-
+import test
 
 def greedydp(cap, weight=[], value=[], I=[]):
     S = []
@@ -34,16 +34,43 @@ def calcu_time():
     cap = json.load(f)
     f.close()
     I = [i for i in range(len(weight))]
+#    print(critical_value(cap, weight, value, I))
     S, U = greedydp(cap, weight, value, I)
-    print S, U
+    print S
+    print 'The total value:', U
+#    print('$$$$\n')
     weight_sum = 0
     for i in S:
         weight_sum += weight[i]
+#    print(cap)
+#    print weight[i]
+#    print weight_sum
+    g = cap - weight_sum
+    print 'gap: ', g
     print 'weight_sum: ', weight_sum
-    #print time.time()
+    # print time.time()
     timeused = time.time() - start
-    print '用时：', timeused
+    print 'time cost', timeused
+    return g
+
+def critical_value(cap, weight=[], value=[], I=[]):
+    S, U = greedydp(cap, weight, value, I)
+    sum = 0
+    j = 0
+    for i in S:
+        sum += value[i]
+        j += 1
+    #print '####' + str(sum) + '####'
+    #print '$$$$$$$$' + str(value[j])
+    return sum
 
 if __name__ == "__main__":
-    calcu_time()
+    for i in range(50):
+        test.test(100,20)
+#        calcu_time()
+        f = open('bg_result.txt', 'a')
+        gap1 = calcu_time()
+        print str(gap1)
+        f.write(str(gap1) + '\n')
+        f.close()
     #print time.clock()

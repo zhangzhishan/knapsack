@@ -20,7 +20,7 @@ def test(num, cap):
     value = []
     random.seed(time.time())
     for i in range(num):
-        value.append(int(random.triangular(1, 5 * num)))
+        value.append(random.triangular(0, 1))
     json.dump(value, f)
     f.close()
 
